@@ -1,4 +1,4 @@
-package ru.itis;
+package ru.itis.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,4 +14,5 @@ public class SimpleDataSource {
         }
     }
 }
+
 

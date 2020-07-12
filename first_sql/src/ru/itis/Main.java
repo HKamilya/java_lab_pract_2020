@@ -1,32 +1,30 @@
 package ru.itis;
 
+import ru.itis.models.Student;
+import ru.itis.repositories.StudentsRepository;
+import ru.itis.repositories.StudentsRepositoryJdbcImpl;
+
 import java.sql.*;
 
 public class Main {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/java_lab_pract_2020";
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private static final String USER = "postgres";
     private static final String PASSWORD = "qAzXcvbnm";
 
 
     public static void main(String[] args) throws SQLException {
-        SimpleDataSource dataSource = new SimpleDataSource();
-        Connection connection = dataSource.openConnection(URL, USER, PASSWORD);
-        Statement statement = connection.createStatement();
-
-        ResultSet resultSet = statement.executeQuery("select * from customer");
-
-        while (resultSet.next()) {
-            System.out.println("ID " + resultSet.getInt("id"));
-            System.out.println("First Name " + resultSet.getString("first_name"));
-            System.out.println("Last Name " + resultSet.getString("last_name"));
-            System.out.println("Age " + resultSet.getInt("age"));
-            System.out.println("City " + resultSet.getString("city"));
-        }
-        System.out.println("-------------------");
-
-        resultSet.close();
-
+        Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        StudentsRepository studentsRepository = new StudentsRepositoryJdbcImpl(connection);
+        Student student = studentsRepository.findById(1L);
+        student.setLastName("Сидиков");
+        studentsRepository.update(student);
+        System.out.println(studentsRepository.findById(1L));
+        System.out.println(studentsRepository.findAllByAge(18));
+        System.out.println(studentsRepository.findAll());
+//        Student student1 = new Student(null, "Хайруллин", "Ильдар", 21, 606);
+//        studentsRepository.save(student1);
+        System.out.println(studentsRepository.findAllByAge(21));
         connection.close();
     }
 }
