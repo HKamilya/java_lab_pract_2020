@@ -161,10 +161,10 @@ public class StudentsRepositoryJdbcImpl implements StudentsRepository {
         Statement statement = null;
         ResultSet result = null;
         Student student = null;
-        HashMap<Student, List<Mentor>> tempHM = new LinkedHashMap<>();
         try {
             statement = connection.createStatement();
             result = statement.executeQuery(SQL_SELECT_BY_ID + id);
+            List<Mentor> mentors = new ArrayList<>();
             while (result.next()) {
                 Mentor mentor = new Mentor(result.getLong("m_id"),
                         result.getString("m_first_name"),
@@ -174,21 +174,7 @@ public class StudentsRepositoryJdbcImpl implements StudentsRepository {
                         result.getString("last_name"),
                         result.getInt("age"),
                         result.getInt("group_number"));
-                if (tempHM.containsKey(student)) {
-                    List<Mentor> temp = tempHM.get(student);
-                    if (!temp.contains(mentor)) {
-                        temp.add(mentor);
-                    }
-                    tempHM.put(student, temp);
-                } else {
-                    List<Mentor> temp = new ArrayList<>();
-                    temp.add(mentor);
-                    tempHM.put(student, temp);
-                }
-            }
-            for (Map.Entry<Student, List<Mentor>> entry : tempHM.entrySet()) {
-                student = entry.getKey();
-                List<Mentor> mentors = entry.getValue();
+                mentors.add(mentor);
                 student.setMentors(mentors);
             }
         } catch (SQLException e) {
