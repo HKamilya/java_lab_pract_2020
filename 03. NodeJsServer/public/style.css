@@ -87,7 +87,7 @@
 
 .popup_content {
     color: black;
-    max-width: 800px;
+    width: 550px;
     padding: 30px;
     border-radius: 3%;
     background-color: beige
@@ -127,7 +127,12 @@
     left: 0;
 }
 
-.text:hover{
+.text:hover {
     color: #3b3c3d;
 }
 
+.table {
+    font-family: "Tahoma", sans-serif;
+    color: black;
+    font-size: 20px;
+}

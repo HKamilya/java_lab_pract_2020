@@ -8,9 +8,6 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
           crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
@@ -27,7 +24,7 @@
             <br>
             <div class="col-3" style="position: fixed" id="menu">
                 <img src="img/photo.jpg"
-                     style="border-radius: 50%; height: 220px; width: 220px;"
+                     style="border-radius: 50%; height: 220px;"
                      alt="photo">
             </div>
             <br>
@@ -56,8 +53,12 @@
             <div class="col-3" style="position: fixed; top:82%">
                 <a class="text" href="#awards">AWARDS</a>
             </div>
-            <div class="col-3" style="position: fixed; top:95%">
+            <div class="col-3" style="position: fixed; top:92%">
                 <a class="text" style="font-size: 20px" href="profile.html">BRIEFLY</a>
+            </div>
+            <div class="col-3" style="position: fixed; top:95%">
+                <a class="text" style="font-size: 20px" href="requests.html">ALL
+                    REQUESTS</a>
             </div>
         </div>
         <div class="col-sm-8">
@@ -205,29 +206,35 @@
     <div class="popup_body">
         <div class="popup_content">
             <div class="popup_title"></div>
-            <form>
+            <form method="POST" name="myForm" action="/request">
                 <div class="form-group">
+                    <label for="name" class="col-form-label text"
+                           style="font-size: 20px; color:#4c7171 ">Name:</label>
+                    <input type="text" class="form-control text"
+                           style="font-size: 15px" id="name" name="name"
+                           placeholder="Enter name" required>
                     <label for="email" class="col-form-label text"
                            style="font-size: 20px; color:#4c7171 ">Email:</label>
                     <input type="text" class="form-control text"
-                           style="font-size: 15px" id="email">
-                </div>
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label text"
+                           style="font-size: 15px" id="email" name="email"
+                           placeholder="example@mail.com" required>
+                    <label for="message" class="col-form-label text"
                            style="font-size: 20px; color: #4c7171">Message:</label>
                     <textarea class="form-control text" style="font-size: 15px"
-                              id="message-text"></textarea>
+                              placeholder="Enter your message"
+                              id="message" name="message"></textarea>
+                </div>
+                <div class="popup_text">
+                </div>
+                <div style="float: right">
+                    <a class="btn btn-secondary text" style="font-size: 18px"
+                       href="#menu" id="close">Close</a>
+                    <button type="submit" class="btn btn-secondary text"
+                            style="font-size: 18px">Send
+                        message
+                    </button>
                 </div>
             </form>
-            <div class="popup_text">Thanks! I'll answer as soon as possible :)
-            </div>
-            <footer style="float: right"><a type="button"
-                                            class="btn btn-secondary text"
-                                            style="font-size: 18px"
-                                            href="#menu">Close</a>
-                <a type="button" class="btn btn-secondary text"
-                   style="font-size: 18px" href="#">Send
-                    message</a></footer>
         </div>
     </div>
 </div>
