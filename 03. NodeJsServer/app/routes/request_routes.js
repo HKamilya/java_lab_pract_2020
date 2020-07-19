@@ -8,18 +8,19 @@ module.exports = function (app) {
             user: 'postgres',
             host: 'localhost',
             database: 'postgres',
-            password: '',
+            password: 'qAzXcvbnm',
         });
         client.connect();
         let name = `${request.body.name}`;
         let email = `${request.body.email}`;
         let message = `${request.body.message}`;
-        let query = 'Insert into postgres.public.message (name, email, message) values ($1,$2,$3);';
+        let back = '<br><a href="/summary.html"><button>Return</button></a>';
+        let query = 'Insert into postgres.public.message (name, email, message) values ($1,$2,$3);'
         client.query(query, [name, email, message], (err) => {
             if (err != null)
-                response.send("Your request was rejected, please try again.");
+                response.send("Your request was rejected, please try again." + back);
             else
-                response.send("Thanks! I'll answer as soon as possible :)");
+                response.send("Thanks! I'll answer as soon as possible :)" + back);
             client.end();
         });
     });
