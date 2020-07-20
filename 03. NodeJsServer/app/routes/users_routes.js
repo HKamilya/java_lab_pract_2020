@@ -4,7 +4,7 @@ module.exports = function (app) {
             "id": 1,
             "name": "Kamilya",
             "lastname": "Khayrullina",
-            "age": 19,
+            "age": 16,
             "city": "Kazan",
             "university": "Kazan Federal University",
             "faculty": "ITIS"
