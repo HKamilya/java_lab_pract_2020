@@ -3,6 +3,7 @@ package ru.itis.javalab.servlets;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import ru.itis.javalab.models.User;
+import ru.itis.javalab.repositories.SimpleJdbcTemplate;
 import ru.itis.javalab.repositories.UsersRepository;
 import ru.itis.javalab.repositories.UsersRepositoryJdbcImpl;
 
@@ -26,7 +27,8 @@ public class UsersServlet extends HttpServlet {
         hikariConfig.setMaximumPoolSize(20);
 
         HikariDataSource dataSource = new HikariDataSource(hikariConfig);
-        usersRepository = new UsersRepositoryJdbcImpl(dataSource);
+        SimpleJdbcTemplate template = new SimpleJdbcTemplate(dataSource);
+        usersRepository = new UsersRepositoryJdbcImpl(dataSource, template);
     }
 
     @Override

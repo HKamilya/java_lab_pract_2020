@@ -14,6 +14,7 @@ import java.util.Optional;
 public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     private DataSource dataSource;
+    private SimpleJdbcTemplate template;
 
     //language=SQL
     private static final String SQL_SELECT_BY_AGE = "select * from \"user\" where age = ?";
@@ -22,7 +23,8 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     private static final String SQL_SELECT = "select * from \"user\"";
 
 
-    public UsersRepositoryJdbcImpl(DataSource dataSource) {
+    public UsersRepositoryJdbcImpl(DataSource dataSource, SimpleJdbcTemplate template) {
+        this.template = template;
         this.dataSource = dataSource;
     }
 
@@ -37,7 +39,6 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     @Override
     public List<User> findAllByAge(Integer age) {
         // TODO: return template.query(SQL_SELECT_BY_AGE, usersRowMapper, age);
-        SimpleJdbcTemplate template = new SimpleJdbcTemplate(dataSource);
         return template.query(SQL_SELECT_BY_AGE, userRowMapper, age);
 
 //        Connection connection = null;
@@ -91,7 +92,6 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     @Override
     public List<User> findAll() {
         // TODO: return template.query(SQL_SELECT, usersRowMapper);
-        SimpleJdbcTemplate template = new SimpleJdbcTemplate(dataSource);
         return template.query(SQL_SELECT, userRowMapper);
 
 //        Connection connection = null;
