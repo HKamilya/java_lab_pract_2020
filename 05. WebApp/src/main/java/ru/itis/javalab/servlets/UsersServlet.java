@@ -19,10 +19,10 @@ public class UsersServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/11-901");
+        hikariConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/javaLab");
         hikariConfig.setDriverClassName("org.postgresql.Driver");
         hikariConfig.setUsername("postgres");
-        hikariConfig.setPassword("qwerty007");
+        hikariConfig.setPassword("qwerty1");
         hikariConfig.setMaximumPoolSize(20);
 
         HikariDataSource dataSource = new HikariDataSource(hikariConfig);
@@ -33,6 +33,8 @@ public class UsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users = usersRepository.findAll();
         System.out.println(users);
+        List<User> users1 = usersRepository.findAllByAge(20);
+        System.out.println(users1);
     }
 
 }

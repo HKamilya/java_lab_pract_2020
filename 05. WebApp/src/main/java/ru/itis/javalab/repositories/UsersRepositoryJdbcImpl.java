@@ -16,10 +16,10 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     private DataSource dataSource;
 
     //language=SQL
-    private static final String SQL_SELECT_BY_AGE = "select * from driver where id = ?";
+    private static final String SQL_SELECT_BY_AGE = "select * from \"user\" where age = ?";
 
     //language=SQL
-    private static final String SQL_SELECT = "select * from driver";
+    private static final String SQL_SELECT = "select * from \"user\"";
 
 
     public UsersRepositoryJdbcImpl(DataSource dataSource) {
