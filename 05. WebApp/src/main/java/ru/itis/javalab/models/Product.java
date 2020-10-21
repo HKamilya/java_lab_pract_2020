@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -16,4 +15,3 @@ public class Product {
     private Double price;
     private User owner;
 }
-

@@ -1,4 +1,4 @@
-package ru.itis.javalab.Logger;
+package ru.itis.javalab.logger;
 
 public class Logger {
 }

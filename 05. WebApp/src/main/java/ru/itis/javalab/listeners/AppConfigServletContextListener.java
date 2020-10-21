@@ -2,7 +2,6 @@ package ru.itis.javalab.listeners;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import ru.itis.javalab.repositories.SimpleJdbcTemplate;
 import ru.itis.javalab.repositories.UsersRepository;
 import ru.itis.javalab.repositories.UsersRepositoryJdbcImpl;
 import ru.itis.javalab.services.UsersService;
@@ -12,7 +11,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -52,3 +50,4 @@ public class AppConfigServletContextListener implements ServletContextListener {
 
     }
 }
+

@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebFilter("/*")
 public class LoggerFilter implements Filter {
 
-    private static final Logger logger = LoggerFactory.getLogger(ru.itis.javalab.Logger.Logger.class);
+    private static final Logger logger = LoggerFactory.getLogger(ru.itis.javalab.logger.Logger.class);
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException, IOException {
