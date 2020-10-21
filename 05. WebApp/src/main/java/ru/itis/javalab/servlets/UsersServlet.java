@@ -1,42 +1,37 @@
 package ru.itis.javalab.servlets;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import ru.itis.javalab.models.User;
 import ru.itis.javalab.repositories.SimpleJdbcTemplate;
-import ru.itis.javalab.repositories.UsersRepository;
 import ru.itis.javalab.repositories.UsersRepositoryJdbcImpl;
+import ru.itis.javalab.services.UsersService;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
 public class UsersServlet extends HttpServlet {
-    private UsersRepository usersRepository;
+
+    private UsersService usersService;
 
     @Override
-    public void init() throws ServletException {
-        HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/javaLab");
-        hikariConfig.setDriverClassName("org.postgresql.Driver");
-        hikariConfig.setUsername("postgres");
-        hikariConfig.setPassword("qwerty1");
-        hikariConfig.setMaximumPoolSize(20);
-
-        HikariDataSource dataSource = new HikariDataSource(hikariConfig);
-        SimpleJdbcTemplate template = new SimpleJdbcTemplate(dataSource);
-        usersRepository = new UsersRepositoryJdbcImpl(dataSource, template);
+    public void init(ServletConfig config) throws ServletException {
+        ServletContext servletContext = config.getServletContext();
+        usersService = (UsersService) servletContext.getAttribute("usersService");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<User> users = usersRepository.findAll();
-        System.out.println(users);
-        List<User> users1 = usersRepository.findAllByAge(20);
-        System.out.println(users1);
+        List<User> users = usersService.getAllUsers();
+        request.setAttribute("usersForJsp", users);
+        request.getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+//        List<User> users1 = usersRepository.findAllByAge(20);
+//        System.out.println(users1);
     }
 
 }

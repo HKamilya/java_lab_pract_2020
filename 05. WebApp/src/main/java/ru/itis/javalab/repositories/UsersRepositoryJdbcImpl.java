@@ -13,7 +13,6 @@ import java.util.Optional;
 
 public class UsersRepositoryJdbcImpl implements UsersRepository {
 
-    private DataSource dataSource;
     private SimpleJdbcTemplate template;
 
     //language=SQL
@@ -23,9 +22,8 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     private static final String SQL_SELECT = "select * from \"user\"";
 
 
-    public UsersRepositoryJdbcImpl(DataSource dataSource, SimpleJdbcTemplate template) {
-        this.template = template;
-        this.dataSource = dataSource;
+    public UsersRepositoryJdbcImpl(DataSource dataSource) {
+        this.template = new SimpleJdbcTemplate(dataSource);
     }
 
     private RowMapper<User> userRowMapper = row -> User.builder()

@@ -6,9 +6,12 @@
         <servlet-name>users-servlet</servlet-name>
         <servlet-class>ru.itis.javalab.servlets.UsersServlet</servlet-class>
     </servlet>
-
+    <welcome-file-list>
+        <welcome-file>login.html</welcome-file>
+    </welcome-file-list>
     <servlet-mapping>
         <servlet-name>users-servlet</servlet-name>
         <url-pattern>/users</url-pattern>
     </servlet-mapping>
+
 </web-app>
