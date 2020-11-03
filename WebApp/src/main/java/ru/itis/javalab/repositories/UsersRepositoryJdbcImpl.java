@@ -1,19 +1,28 @@
 package ru.itis.javalab.repositories;
 
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import ru.itis.javalab.models.User;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class UsersRepositoryJdbcImpl implements UsersRepository {
 
-    private SimpleJdbcTemplate template;
+    private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    //language=SQL
+    private static final String SQL_SELECT_BY_ID = "select * from \"user\" where id = ?";
+
+    //language=SQL
+    private static final String SQL_SELECT_BY_USERNAME = "select * from \"user\" where username = ?";
+
+    //language=SQL
+    private static final String SQL_SELECT_BY_UUID = "select * from \"user\" where uuid = ?";
 
     //language=SQL
     private static final String SQL_SELECT_BY_AGE = "select * from \"user\" where age = ?";
@@ -21,23 +30,37 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     //language=SQL
     private static final String SQL_SELECT = "select * from \"user\"";
 
+    //language=SQL
+    private static final String SQL_UPDATE = "UPDATE \"user\" SET first_name=?, last_name=?, age=?,password=? where uuid =?";
+
+    //language=SQL
+    private static final String SQL_UPDATE_UUID = "UPDATE \"user\" SET uuid =? where username=?";
+
 
     public UsersRepositoryJdbcImpl(DataSource dataSource) {
-        this.template = new SimpleJdbcTemplate(dataSource);
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    private RowMapper<User> userRowMapper = row -> User.builder()
+    private RowMapper<User> userRowMapper = (row, i) -> User.builder()
             .id(row.getLong("id"))
             .firstName(row.getString("first_name"))
             .lastName(row.getString("last_name"))
             .age(row.getInt("age"))
+            .uuid(row.getString("uuid"))
+            .password(row.getString("password"))
+            .username(row.getString("username"))
             .build();
 
+
+    public void updateByUsername(String username, String uuid) {
+        jdbcTemplate.update(SQL_UPDATE_UUID, uuid, username);
+    }
 
     @Override
     public List<User> findAllByAge(Integer age) {
         // TODO: return template.query(SQL_SELECT_BY_AGE, usersRowMapper, age);
-        return template.query(SQL_SELECT_BY_AGE, userRowMapper, age);
+        return jdbcTemplate.query(SQL_SELECT_BY_AGE, userRowMapper, age);
 
 //        Connection connection = null;
 //        PreparedStatement statement = null;
@@ -83,6 +106,24 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     }
 
     @Override
+    public User findByUsername(String username) {
+        return (User) jdbcTemplate.queryForObject(SQL_SELECT_BY_USERNAME, userRowMapper, username);
+    }
+
+    @Override
+    public Optional<User> findByUuid(String uuid) {
+        User user;
+        try {
+            user = jdbcTemplate.queryForObject(SQL_SELECT_BY_UUID, userRowMapper, uuid);
+        } catch (EmptyResultDataAccessException e) {
+            user = null;
+        }
+
+        return Optional.ofNullable(user);
+    }
+
+
+    @Override
     public Optional<User> findFirstByFirstnameAndLastname(String firstName, String lastName) {
         return Optional.empty();
     }
@@ -90,7 +131,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     @Override
     public List<User> findAll() {
         // TODO: return template.query(SQL_SELECT, usersRowMapper);
-        return template.query(SQL_SELECT, userRowMapper);
+        return jdbcTemplate.query(SQL_SELECT, userRowMapper);
 
 //        Connection connection = null;
 //        PreparedStatement statement = null;
@@ -136,12 +177,37 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     }
 
     @Override
+    public List<User> findAll(int page, int size) {
+        return null;
+    }
+
+
+    @Override
     public Optional<User> findById(Long id) {
-        return Optional.empty();
+
+        User user;
+        try {
+            user = jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, userRowMapper, id);
+        } catch (EmptyResultDataAccessException e) {
+            user = null;
+        }
+
+        return Optional.ofNullable(user);
+
+
     }
 
     @Override
     public void save(User entity) {
+        String firstName = entity.getFirstName();
+        String lastName = entity.getLastName();
+        Integer age = entity.getAge();
+        String uuid = entity.getUuid();
+        String password = entity.getPassword();
+
+        jdbcTemplate.update(SQL_UPDATE, firstName, lastName, age, password, uuid);
+
+
     }
 
     @Override
@@ -155,4 +221,5 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     @Override
     public void delete(User entity) {
     }
+
 }

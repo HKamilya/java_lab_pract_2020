@@ -1,8 +1,6 @@
 package ru.itis.javalab.servlets;
 
 import ru.itis.javalab.models.User;
-import ru.itis.javalab.repositories.SimpleJdbcTemplate;
-import ru.itis.javalab.repositories.UsersRepositoryJdbcImpl;
 import ru.itis.javalab.services.UsersService;
 
 import javax.servlet.ServletConfig;
@@ -11,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
