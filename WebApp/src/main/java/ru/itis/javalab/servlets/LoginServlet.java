@@ -6,10 +6,7 @@ import ru.itis.javalab.services.UsersService;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
@@ -31,12 +28,6 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/Login.jsp").forward(req, resp);
 
-//        UsersService usersService = (UsersService) getServletContext().getAttribute("usersService");
-//        String id= UUID.randomUUID().toString();
-//        Cookie cookie = new Cookie("auth",id);
-//        cookie.setMaxAge(60*60*24*365);
-//        usersService.addCookie(,id);
-//        req.getRequestDispatcher("Login.jsp").forward(req, resp);
     }
 
     @Override
@@ -55,8 +46,11 @@ public class LoginServlet extends HttpServlet {
 
         if (user.getUsername().equals(username)
                 && user.getPassword().equals(password)) {
-            resp.addCookie(new Cookie("Auth", user.getUuid()));
-            req.getRequestDispatcher("/WEB-INF/Profile.jsp").forward(req,resp);
+            HttpSession session = req.getSession();
+            session.setMaxInactiveInterval(10 * 60);
+            session.setAttribute("Auth", user.getUuid());
+//            resp.addCookie(new Cookie("Auth", user.getUuid()));
+            req.getRequestDispatcher("/WEB-INF/Profile.jsp").forward(req, resp);
         }
     }
 
