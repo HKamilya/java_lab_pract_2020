@@ -4,9 +4,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import ru.itis.javalab.models.User;
 
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +35,10 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     //language=SQL
     private static final String SQL_UPDATE = "UPDATE \"user\" SET first_name=?, last_name=?, age=?,password=? where uuid =?";
+
+    //language=SQL
+    private static final String SQL_INSERT = "insert into \"user\" (first_name, last_name, age, password, username) VALUES (?,?,?,?,?)";
+
 
     //language=SQL
     private static final String SQL_UPDATE_UUID = "UPDATE \"user\" SET uuid =? where username=?";
@@ -197,18 +204,38 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     }
 
-    @Override
-    public void save(User entity) {
+//    @Override
+//    public void save(User entity) {
+//        String firstName = entity.getFirstName();
+//        String lastName = entity.getLastName();
+//        Integer age = entity.getAge();
+//        String password = entity.getPassword();
+//
+//        jdbcTemplate.update(SQL_INSERT, firstName, lastName, age, password);
+//
+//    }
+
+    public Long save(User entity) {
         String firstName = entity.getFirstName();
         String lastName = entity.getLastName();
         Integer age = entity.getAge();
-        String uuid = entity.getUuid();
         String password = entity.getPassword();
 
-        jdbcTemplate.update(SQL_UPDATE, firstName, lastName, age, password, uuid);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection
+                    .prepareStatement(SQL_INSERT);
+            ps.setString(1, firstName);
+            ps.setString(2, lastName);
+            ps.setInt(3, age);
+            ps.setString(4, password);
+            return ps;
+        }, keyHolder);
 
+        return (long) keyHolder.getKey();
     }
+
 
     @Override
     public void update(User entity) {
