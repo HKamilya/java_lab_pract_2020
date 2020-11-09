@@ -1,10 +1,6 @@
-package ru.itis;
-
-import ru.itis.homework.EntityManager;
-import ru.itis.homework.User;
+package ru.itis.javalab;
 
 
-import javax.sql.DataSource;
 import java.lang.reflect.*;
 
 // Получить подробную информацию о полях класса
@@ -19,9 +15,9 @@ public class Main {
 //        Class aClass0 = Component.class;
 //        Class<?> aClass = Component.class;
 //        Class<Component> aClass1 = Component.class;
-        Class<?> aClass3 = Class.forName("ru.itis.Component");
+        Class<?> aClass3 = Class.forName("ru.itis.javalab.Component");
 
-        Field fields[] = aClass3.getDeclaredFields();
+        Field[] fields = aClass3.getDeclaredFields();
         for (Field field : fields) {
             StringBuilder modifiers = new StringBuilder();
 
@@ -46,21 +42,21 @@ public class Main {
             System.out.println(modifiers.toString() + field.getType().getSimpleName() + " " + field.getName());
         }
 
-        Method methods[] = aClass3.getDeclaredMethods();
+        Method[] methods = aClass3.getDeclaredMethods();
         for (Method method : methods) {
             StringBuilder modifiers = new StringBuilder();
 
             int modifiersCodes = method.getModifiers();
-            if (Modifier.isFinal(modifiersCodes)) {
-                modifiers.append("final");
-                modifiers.append(" ");
-            }
             if (Modifier.isPublic(modifiersCodes)) {
                 modifiers.append("public");
                 modifiers.append(" ");
             }
             if (Modifier.isPrivate(modifiersCodes)) {
                 modifiers.append("private");
+                modifiers.append(" ");
+            }
+            if (Modifier.isFinal(modifiersCodes)) {
+                modifiers.append("final");
                 modifiers.append(" ");
             }
             if (Modifier.isStatic(modifiersCodes)) {
@@ -70,7 +66,7 @@ public class Main {
 
             StringBuilder parametersOfMethod = new StringBuilder();
 
-            Parameter parameters[] = method.getParameters();
+            Parameter[] parameters = method.getParameters();
             for (Parameter parameter : parameters) {
                 parametersOfMethod.append(parameter.getType().getSimpleName())
                         .append(" ").append(parameter.getName()).append(",");
@@ -95,12 +91,7 @@ public class Main {
         field.setAccessible(true);
         field.setInt(component, 155);
         System.out.println(component.getPrivateField());
-        
-        EntityManager entityManager = new EntityManager();
-        User user = new User(1L, "Kamilya", "Khayrullina", true);
 
-        entityManager.createTable("user", user.getClass());
-        entityManager.save("user", user);
-        entityManager.findById("user", User.class, Long.class, 10L);
+
     }
 }
