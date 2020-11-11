@@ -41,7 +41,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
 
     //language=SQL
-    private static final String SQL_UPDATE_UUID = "UPDATE \"user\" SET uuid =? where username=?";
+    private static final String SQL_UPDATE_UUID = "UPDATE \"user\" SET uuid =?, password =? where username=?";
 
 
     public UsersRepositoryJdbcImpl(DataSource dataSource) {
@@ -60,8 +60,8 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
             .build();
 
 
-    public void updateByUsername(String username, String uuid) {
-        jdbcTemplate.update(SQL_UPDATE_UUID, uuid, username);
+    public void updateByUsername(String username, String uuid, String password) {
+        jdbcTemplate.update(SQL_UPDATE_UUID, uuid, password, username);
     }
 
     @Override

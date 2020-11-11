@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface UsersRepository extends CrudRepository<User> {
     List<User> findAllByAge(Integer age);
 
-    void updateByUsername(String login, String uuid);
+    void updateByUsername(String login, String uuid, String password);
 
     Optional<User> findFirstByFirstnameAndLastname(String firstName, String lastName);
 

@@ -15,9 +15,9 @@
     <br>
     <input type="text" name="username">
     <br>
-    <input type="text" name="password">
+    <input type="password" name="password">
     <br>
-    <input type="checkbox" name="remember" value="true">
+
     <input type="submit">
 </form>
 </body>

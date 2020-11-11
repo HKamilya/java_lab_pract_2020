@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Optional;
 
-@WebFilter(urlPatterns = {"/Profile"})
+@WebFilter("/*")
 public class AuthFilter implements Filter {
     private UsersService usersService;
 
@@ -35,18 +35,7 @@ public class AuthFilter implements Filter {
             flag = true;
         }
 
-//        Cookie[] cookies = request.getCookies();
-//        if (cookies != null)
-//            for (Cookie cookie : cookies) {
-//                if (cookie.getName().equals("Auth")) {
-//                    Optional<User> user = usersService.findByUuid(cookie.getValue());
-//                    if (user.isPresent()) {
-//                        flag = true;
-//                    }
-//                }
-//            }
-
-        if (!flag) {
+        if (!flag && !request.getRequestURI().equals("/Login")) {
             response.sendRedirect("/Login");
             return;
         }

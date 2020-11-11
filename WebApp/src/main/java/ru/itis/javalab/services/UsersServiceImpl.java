@@ -43,8 +43,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void insertUUID(String username, String uuid) {
-        usersRepository.updateByUsername(username, uuid);
+    public void updateUser(User user) {
+        usersRepository.updateByUsername(user.getUsername(), user.getUuid(), user.getPassword());
     }
 
     public Optional<User> findByUuid(String uuid) {

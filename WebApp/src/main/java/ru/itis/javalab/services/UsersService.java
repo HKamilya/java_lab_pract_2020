@@ -19,6 +19,6 @@ public interface UsersService {
 
     Optional<User> findByUuid(String uuid);
 
-    void insertUUID(String username, String uuid);
 
+    void updateUser(User user);
 }

@@ -1,5 +1,6 @@
 package ru.itis.javalab.servlets;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.itis.javalab.models.User;
 import ru.itis.javalab.services.UsersService;
 
@@ -16,12 +17,13 @@ import java.util.UUID;
 public class LoginServlet extends HttpServlet {
 
     private UsersService usersService;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        usersService = (UsersService) config.getServletContext().getAttribute("usersService");
+        this.usersService = (UsersService) config.getServletContext().getAttribute("usersService");
+        this.passwordEncoder = (PasswordEncoder) config.getServletContext().getAttribute("passwordEncoder");
         super.init(config);
-
     }
 
     @Override
@@ -34,22 +36,18 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        boolean rememberMe = "true".equals(req.getParameter("remember"));
-        if (rememberMe) {
-            String id = UUID.randomUUID().toString();
-            System.out.println(id);
-            usersService.insertUUID(username, id);
-        }
 
         User user = usersService.findByUsername(username);
 
 
         if (user.getUsername().equals(username)
-                && user.getPassword().equals(password)) {
+                && passwordEncoder.matches(password, user.getPassword())) {
+            String uuid = UUID.randomUUID().toString();
+            user.setUuid(uuid);
+            usersService.updateUser(user);
             HttpSession session = req.getSession();
-            session.setMaxInactiveInterval(10 * 60);
             session.setAttribute("Auth", user.getUuid());
-//            resp.addCookie(new Cookie("Auth", user.getUuid()));
+            resp.addCookie(new Cookie("Auth", user.getUuid()));
             req.getRequestDispatcher("/WEB-INF/Profile.jsp").forward(req, resp);
         }
     }
