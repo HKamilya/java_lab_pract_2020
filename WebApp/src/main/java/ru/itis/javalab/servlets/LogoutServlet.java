@@ -25,7 +25,7 @@ public class LogoutServlet extends HttpServlet {
 
         if (session != null) {
             session.invalidate();
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/Login.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/Login.ftl");
             requestDispatcher.forward(request, response);
         }
     }

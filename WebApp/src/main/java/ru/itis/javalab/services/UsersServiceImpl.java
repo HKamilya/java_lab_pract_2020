@@ -1,16 +1,21 @@
 package ru.itis.javalab.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.itis.javalab.dto.UserDto;
 import ru.itis.javalab.models.User;
 import ru.itis.javalab.repositories.UsersRepository;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 import java.util.Optional;
 
 import static ru.itis.javalab.dto.UserDto.from;
 
+
 public class UsersServiceImpl implements UsersService {
+
 
     private UsersRepository usersRepository;
 

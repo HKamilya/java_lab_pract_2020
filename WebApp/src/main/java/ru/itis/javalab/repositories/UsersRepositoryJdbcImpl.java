@@ -6,12 +6,14 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 import ru.itis.javalab.models.User;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
+
 
 public class UsersRepositoryJdbcImpl implements UsersRepository {
 
@@ -58,6 +60,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
             .password(row.getString("password"))
             .username(row.getString("username"))
             .build();
+
 
 
     public void updateByUsername(String username, String uuid, String password) {
