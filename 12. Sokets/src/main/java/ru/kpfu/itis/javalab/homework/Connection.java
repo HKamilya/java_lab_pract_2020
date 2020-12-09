@@ -3,14 +3,14 @@ package ru.kpfu.itis.javalab.homework;
 import java.io.*;
 import java.net.Socket;
 
-public class SocketThread extends Thread {
+public class Connection extends Thread {
     private Socket socket;
     private BufferedReader in;
     private BufferedWriter out;
 
 
 
-    public SocketThread(Socket socket) throws IOException {
+    public Connection(Socket socket) throws IOException {
         this.socket = socket;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -35,7 +35,7 @@ public class SocketThread extends Thread {
                         break;
                     }
                     System.out.println("Echo: " + word);
-                    for (SocketThread vr : EchoServerSocket.serverList) {
+                    for (Connection vr : EchoServerSocket.serverList) {
                         vr.send(word);
                     }
                 }
@@ -62,7 +62,7 @@ public class SocketThread extends Thread {
                 socket.close();
                 in.close();
                 out.close();
-                for (SocketThread vr : EchoServerSocket.serverList) {
+                for (Connection vr : EchoServerSocket.serverList) {
                     if (vr.equals(this)) vr.interrupt();
                     EchoServerSocket.serverList.remove(this);
                 }

@@ -37,8 +37,6 @@ public class SocketClient {
         System.out.print("Press your nick: ");
         try {
             nickname = inputUser.readLine();
-            out.write("Hello " + nickname + "\n");
-            out.flush();
         } catch (IOException ignored) {
         }
 

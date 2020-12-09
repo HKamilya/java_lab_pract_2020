@@ -1,12 +1,17 @@
 package ru.kpfu.itis.javalab.homework;
 
+import com.beust.jcommander.JCommander;
+
 public class Client {
-    public static String ipAddr = "localhost";
-    public static int port = 8080;
 
 
-    public static void main(String[] args) {
-        new SocketClient(ipAddr, port);
+
+    public static void main(String[] argv) {
+        ClientArgs args = new ClientArgs();
+        JCommander.newBuilder()
+                .addObject(args)
+                .build()
+                .parse(argv);
+        new SocketClient(args.serverIp, args.port);
     }
-
 }
