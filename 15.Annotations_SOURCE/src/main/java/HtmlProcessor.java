@@ -12,6 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -26,17 +28,24 @@ public class HtmlProcessor extends AbstractProcessor {
             // получаем полный путь для генерации html
             String path = HtmlProcessor.class.getProtectionDomain().getCodeSource().getLocation().getPath();
             // User.class -> User.html
+            Form form = new Form();
             path = path.substring(1) + element.getSimpleName().toString() + ".ftlh";
             Path out = Paths.get(path);
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(out.toFile()));
                 HtmlForm annotation = element.getAnnotation(HtmlForm.class);
-                writer.write("<form action='" + annotation.action() + "' method='" + annotation.method() + "'>\n");
+                form.setAction(annotation.action());
+                form.setMethod(annotation.method());
+                List<Input> inputs = new ArrayList<>();
+
+                writer.write("<form action='${" + annotation.action() + "}' method='" + annotation.method() + "'>\n");
                 Set<? extends Element> annElem = roundEnv.getElementsAnnotatedWith(HtmlInput.class);
+                writer.write("<#list ");
                 for (Element elem : annElem) {
                     HtmlInput input = elem.getAnnotation(HtmlInput.class);
                     writer.write("<input type='" + input.type() + "' name='" + input.name() + "' placeholder='" + input.placeholder() + "'>\n");
                 }
+                writer.write("</#list>");
                 writer.write("</form>");
                 writer.close();
             } catch (IOException e) {

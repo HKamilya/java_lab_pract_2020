@@ -15,14 +15,11 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebFilter("/*")
 public class AuthFilter implements Filter {
     private UsersService usersService;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-//        usersService = (UsersService) filterConfig.getServletContext().getAttribute("usersService");
-//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("context.xml");
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfiguration.class);
         usersService = applicationContext.getBean(UsersService.class);
     }
@@ -35,7 +32,7 @@ public class AuthFilter implements Filter {
         boolean flag = false;
         HttpSession session = request.getSession();
         String uuid = (String) session.getAttribute("Auth");
-        if(uuid!=null) {
+        if (uuid != null) {
             Optional<User> user = usersService.findByUuid(uuid);
             if (user.isPresent()) {
                 flag = true;

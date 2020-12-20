@@ -27,13 +27,6 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-//        this.usersService = (UsersService) config.getServletContext().getAttribute("usersService");
-//        this.passwordEncoder = (PasswordEncoder) config.getServletContext().getAttribute("passwordEncoder");
-//        super.init(config);
-
-//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("context.xml");
-//        passwordEncoder = (PasswordEncoder) config.getServletContext().getAttribute("passwordEncoder");
-
         ServletContext servletContext = config.getServletContext();
         ApplicationContext applicationContext = (ApplicationContext) servletContext.getAttribute("applicationContext");
         usersService = applicationContext.getBean(UsersService.class);
