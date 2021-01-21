@@ -7,9 +7,5 @@
 <body>
 Hello user!
 <a href="/Logout">logout</a>
-<h3>${_csrf_token}</h3>
-<form action="/Profile?action=delete&user_id=${user_id}" method="post">
-    <input type="submit" value="delete">
-</form>
 </body>
 </html>

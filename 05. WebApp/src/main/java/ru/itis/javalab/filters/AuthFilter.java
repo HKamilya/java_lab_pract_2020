@@ -2,7 +2,6 @@ package ru.itis.javalab.filters;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.itis.javalab.config.AppConfiguration;
 import ru.itis.javalab.models.User;
 import ru.itis.javalab.services.UsersService;
@@ -15,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
+@WebFilter("/*")
 public class AuthFilter implements Filter {
     private UsersService usersService;
 
