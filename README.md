@@ -26,6 +26,7 @@ https://github.com/HKamilya/JavaLab_2020/tree/master/10.%20Reflection
 
 ### 08. Сделать Web-приложение со страницами на Freemarker (2-3) страницы
 https://github.com/HKamilya/JavaLab_2020/tree/master/05.%20WebApp
+https://github.com/HKamilya/friends.net-spring-mvc
 
 ### 09. Sockets
 https://github.com/HKamilya/JavaLab_2020/tree/master/12.%20Sokets
