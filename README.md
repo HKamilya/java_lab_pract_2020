@@ -1,14 +1,12 @@
 # JavaLab_2020
 
 * 01. Реализовать Thread Pool 
-ссылка на коммит: https://github.com/HKamilya/JavaLab_2020/commit/913ae399b1a756d5f215b30d35068bb830b1f6ba
+https://github.com/HKamilya/JavaLab_2020/tree/master/Threads/src/ru/kpfu/itis
 
 * 02. JAR-приложения для многопоточной загрузки 
-ссылка на коммит: https://github.com/HKamilya/JavaLab_2020/commit/676be0704f1270562d6be454ae2fd6a24ab68cbd
 https://github.com/HKamilya/JavaLab_2020/tree/master/JARS/src
 
 * 03. Реализлвать Maven-проект для многопоточной загрузки 
-ссылка на коммит: https://github.com/HKamilya/JavaLab_2020/commit/84fc4cbe2f52907870bca7ae4c88ce76101a09c2
 https://github.com/HKamilya/JavaLab_2020/tree/master/03.%20Maven%20Example
 https://github.com/HKamilya/JavaLab_2020/tree/master/04.%20Maven%20Lib%20Example
 
