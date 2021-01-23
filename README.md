@@ -14,7 +14,8 @@ https://github.com/HKamilya/JavaLab_2020/tree/master/04.%20Maven%20Lib%20Example
 #### ссылка на коммит: https://github.com/HKamilya/JavaLab_2020/commit/f8d920c1a854fbdf99ea97378678ef46029806d7 https://github.com/HKamilya/JavaLab_2020/commit/5658375f56c46846fb1a003ffc4c672da00fbe19
 
 ### 05. Логирование и примитивная безопасность 
-#### ссылка на коммит: https://github.com/HKamilya/JavaLab_2020/commit/8c99c46e81d419071448e4bfd96e6c5c1b0bcc59
+#### ссылка на коммит:
+https://github.com/HKamilya/JavaLab_2020/commit/8c99c46e81d419071448e4bfd96e6c5c1b0bcc59
 https://github.com/HKamilya/JavaLab_2020/tree/master/05.%20WebApp
 
 ### 06. PasswordEncoder feat. HttpSession 
@@ -35,5 +36,5 @@ https://github.com/HKamilya/JavaLab_2020/tree/master/12.Sokets
 #### ссылка на коммит : https://github.com/HKamilya/JavaLab_2020/tree/master/15.Annotations_SOURCE
 
 ### 11. CSRF и постоянное хранилище сессий
-#### на сервлетах
-https://github.com/HKamilya/JavaLab_2020/tree/master/16.WebAppExample
+#### на сервлетах https://github.com/HKamilya/JavaLab_2020/tree/master/16.WebAppExample
+#### на spring mvc https://github.com/HKamilya/JavaLab_2020/tree/master/16.1.WebAppExample
