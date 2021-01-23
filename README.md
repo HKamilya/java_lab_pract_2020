@@ -16,6 +16,7 @@
 
 ### 05. Логирование и примитивная безопасность 
 ##### [ссылка на коммит](https://github.com/HKamilya/JavaLab_2020/commit/8c99c46e81d419071448e4bfd96e6c5c1b0bcc59)
+##### [05. WebApp](https://github.com/HKamilya/JavaLab_2020/tree/master/05.%20WebApp)
 
 ### 06. PasswordEncoder feat. HttpSession 
 ##### [ссылка на коммит](https://github.com/HKamilya/JavaLab_2020/commit/7d9acc2f82c41740c7520844047e87366adeed68)
