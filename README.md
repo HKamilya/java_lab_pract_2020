@@ -12,8 +12,7 @@
 ##### [04. Maven Lib Example](https://github.com/HKamilya/JavaLab_2020/tree/master/04.%20Maven%20Lib%20Example)
 
 ### 04. Реализовать SimpleJdbcTemplate 
-##### [ссылка на коммит 1](https://github.com/HKamilya/JavaLab_2020/commit/f8d920c1a854fbdf99ea97378678ef46029806d7)
-##### [ссылка на коммит 2](https://github.com/HKamilya/JavaLab_2020/commit/5658375f56c46846fb1a003ffc4c672da00fbe19)
+##### [SimpleJDBCTemplate](https://github.com/HKamilya/JavaLab_2020/blob/master/SimpleJDBCTemplate/src/main/java/ru/itis/javalab/repositories/SimpleJdbcTemplate.java)
 
 ### 05. Логирование и примитивная безопасность 
 ##### [ссылка на коммит](https://github.com/HKamilya/JavaLab_2020/commit/8c99c46e81d419071448e4bfd96e6c5c1b0bcc59)
