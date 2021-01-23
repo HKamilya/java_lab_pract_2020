@@ -4,7 +4,8 @@
 ##### Threads
 ###### https://github.com/HKamilya/JavaLab_2020/tree/master/Threads/src/ru/kpfu/itis
 
-### 02. JAR-приложения для многопоточной загрузки 
+### 02. JAR-приложения для многопоточной загрузки
+##### JARS
 ###### https://github.com/HKamilya/JavaLab_2020/tree/master/JARS/src
 
 ### 03. Реализлвать Maven-проект для многопоточной загрузки - 
