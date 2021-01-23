@@ -9,7 +9,6 @@ public class Connection extends Thread {
     private BufferedWriter out;
 
 
-
     public Connection(Socket socket) throws IOException {
         this.socket = socket;
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -56,14 +55,15 @@ public class Connection extends Thread {
         }
 
     }
+
     private void downService() {
         try {
             if (!socket.isClosed()) {
                 socket.close();
                 in.close();
                 out.close();
-                for (Connection vr : EchoServerSocket.serverList) {
-                    if (vr.equals(this)) vr.interrupt();
+                for (Connection con : EchoServerSocket.serverList) {
+                    if (con.equals(this)) con.interrupt();
                     EchoServerSocket.serverList.remove(this);
                 }
             }

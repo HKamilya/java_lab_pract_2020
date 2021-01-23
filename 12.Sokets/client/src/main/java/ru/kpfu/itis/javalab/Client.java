@@ -4,8 +4,6 @@ import com.beust.jcommander.JCommander;
 
 public class Client {
 
-
-
     public static void main(String[] argv) {
         ClientArgs args = new ClientArgs();
         JCommander.newBuilder()

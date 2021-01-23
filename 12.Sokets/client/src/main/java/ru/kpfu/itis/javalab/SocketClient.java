@@ -7,25 +7,21 @@ public class SocketClient {
     private Socket socket;
     private BufferedReader in;
     private BufferedWriter out;
-    private BufferedReader inputUser;
-    private String addr;
-    private int port;
-    private String nickname;
+    private BufferedReader input;
+    private String name;
 
 
     public SocketClient(String addr, int port) {
-        this.addr = addr;
-        this.port = port;
         try {
             this.socket = new Socket(addr, port);
         } catch (IOException e) {
-            System.err.println("Socket failed");
+            System.err.println("Socket failed :(");
         }
         try {
-            inputUser = new BufferedReader(new InputStreamReader(System.in));
+            input = new BufferedReader(new InputStreamReader(System.in));
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            this.pressNickname();
+            this.insertName();
             new SocketClient.ReadMsg().start();
             new SocketClient.WriteMsg().start();
         } catch (IOException e) {
@@ -33,10 +29,10 @@ public class SocketClient {
         }
     }
 
-    private void pressNickname() {
-        System.out.print("Press your nick: ");
+    private void insertName() {
+        System.out.print("Enter your name: ");
         try {
-            nickname = inputUser.readLine();
+            name = input.readLine();
         } catch (IOException ignored) {
         }
 
@@ -80,20 +76,19 @@ public class SocketClient {
             while (true) {
                 String userWord;
                 try {
-                    userWord = inputUser.readLine();
+                    userWord = input.readLine();
                     if (userWord.equals("stop")) {
                         out.write("stop" + "\n");
                         SocketClient.this.downService();
                         break;
                     } else {
-                        out.write(nickname + ": " + userWord + "\n");
+                        out.write(name + ": " + userWord + "\n");
                     }
                     out.flush();
                 } catch (IOException e) {
                     SocketClient.this.downService();
 
                 }
-
             }
         }
     }
