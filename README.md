@@ -1,18 +1,15 @@
 # JavaLab_2020
+* под дз названия проектов/ссылка, где находится сделанное задание 
 
 ### 01. Реализовать Thread Pool 
 ##### Threads
-###### https://github.com/HKamilya/JavaLab_2020/tree/master/Threads/src/ru/kpfu/itis
 
 ### 02. JAR-приложения для многопоточной загрузки
 ##### JARS
-###### https://github.com/HKamilya/JavaLab_2020/tree/master/JARS/src
 
 ### 03. Реализлвать Maven-проект для многопоточной загрузки - 
 ##### 03. Maven Example
-###### https://github.com/HKamilya/JavaLab_2020/tree/master/03.%20Maven%20Example
 ##### 04. Maven Lib Example
-###### https://github.com/HKamilya/JavaLab_2020/tree/master/04.%20Maven%20Lib%20Example
 
 ### 04. Реализовать SimpleJdbcTemplate 
 ##### ссылка на коммит: 
@@ -32,7 +29,6 @@
 
 ### 07. Реализовать EntityManager 
 ##### 10. Reflection
-###### https://github.com/HKamilya/JavaLab_2020/tree/master/10.%20Reflection
 
 ### 08. Сделать Web-приложение со страницами на Freemarker (2-3) страницы
 ##### 05. WebApp
@@ -42,14 +38,10 @@
 
 ### 09. Sockets
 ##### 12.Sockets
-###### https://github.com/HKamilya/JavaLab_2020/tree/master/12.Sokets
 
 ### 10. Сделать AnnotationProcessing
 ##### 15.Annotations_SOURCE
-###### https://github.com/HKamilya/JavaLab_2020/tree/master/15.Annotations_SOURCE
 
 ### 11. CSRF и постоянное хранилище сессий
 ##### на сервлетах  16.WebAppExample 
-###### https://github.com/HKamilya/JavaLab_2020/tree/master/16.WebAppExample
 ##### на spring mvc 16.1.WebAppExample 
-###### https://github.com/HKamilya/JavaLab_2020/tree/master/16.1.WebAppExample
