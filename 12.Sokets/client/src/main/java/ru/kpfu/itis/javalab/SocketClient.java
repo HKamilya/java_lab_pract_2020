@@ -1,4 +1,4 @@
-package ru.kpfu.itis.javalab.homework;
+package ru.kpfu.itis.javalab;
 
 import java.io.*;
 import java.net.Socket;

@@ -1,4 +1,4 @@
-package ru.kpfu.itis.javalab.homework;
+package ru.kpfu.itis.javalab;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;

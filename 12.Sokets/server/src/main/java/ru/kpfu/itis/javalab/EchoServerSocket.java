@@ -1,4 +1,4 @@
-package ru.kpfu.itis.javalab.homework;
+package ru.kpfu.itis.javalab;
 
 import com.beust.jcommander.JCommander;
 
