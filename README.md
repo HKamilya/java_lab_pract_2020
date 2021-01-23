@@ -29,11 +29,10 @@ https://github.com/HKamilya/JavaLab_2020/tree/master/05.%20WebApp
 https://github.com/HKamilya/friends.net-spring-mvc
 
 ### 09. Sockets
-https://github.com/HKamilya/JavaLab_2020/tree/master/12.%20Sokets
+https://github.com/HKamilya/JavaLab_2020/tree/master/12.Sokets
 
 ### 10. Сделать AnnotationProcessing
-#### ссылка на коммит:
-https://github.com/HKamilya/JavaLab_2020/tree/master/15.Annotations_SOURCE
+#### ссылка на коммит : https://github.com/HKamilya/JavaLab_2020/tree/master/15.Annotations_SOURCE
 
 ### 11. CSRF и постоянное хранилище сессий
 #### на сервлетах
