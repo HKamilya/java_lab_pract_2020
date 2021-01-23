@@ -29,13 +29,11 @@ public class Connection extends Thread {
             try {
                 while (true) {
                     word = in.readLine();
-                    if (word.equals("stop")) {
-                        this.downService();
-                        break;
-                    }
                     System.out.println("Echo: " + word);
-                    for (Connection vr : EchoServerSocket.serverList) {
-                        vr.send(word);
+                    for (Connection connection : EchoServerSocket.serverList) {
+                        if (connection != this) {
+                            connection.send(word);
+                        }
                     }
                 }
             } catch (NullPointerException ignored) {
@@ -63,7 +61,9 @@ public class Connection extends Thread {
                 in.close();
                 out.close();
                 for (Connection con : EchoServerSocket.serverList) {
-                    if (con.equals(this)) con.interrupt();
+                    if (con.equals(this)) {
+                        con.interrupt();
+                    }
                     EchoServerSocket.serverList.remove(this);
                 }
             }

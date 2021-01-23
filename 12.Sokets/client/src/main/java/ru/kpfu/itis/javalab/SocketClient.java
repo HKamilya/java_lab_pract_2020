@@ -57,10 +57,6 @@ public class SocketClient {
             try {
                 while (true) {
                     str = in.readLine();
-                    if (str.equals("stop")) {
-                        SocketClient.this.downService();
-                        break;
-                    }
                     System.out.println(str);
                 }
             } catch (IOException e) {
@@ -77,13 +73,7 @@ public class SocketClient {
                 String userWord;
                 try {
                     userWord = input.readLine();
-                    if (userWord.equals("stop")) {
-                        out.write("stop" + "\n");
-                        SocketClient.this.downService();
-                        break;
-                    } else {
-                        out.write(name + ": " + userWord + "\n");
-                    }
+                    out.write(name + ": " + userWord + "\n");
                     out.flush();
                 } catch (IOException e) {
                     SocketClient.this.downService();
